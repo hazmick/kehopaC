@@ -94,7 +94,9 @@ const [warn, setWarn] = useState("");
       })
   
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response.data.message ||
+        error.response.data.error ||
+        error.message)
       console.log(error.response.data.error)
     }
   }, []);

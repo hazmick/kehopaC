@@ -63,7 +63,9 @@ const Register = ({ history }) => {
         router.push("/dashboard");
       }, 5000);
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response.data.message ||
+        error.response.data.error ||
+        error.message)
 
       setTimeout(() => {
       setPassword("");

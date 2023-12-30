@@ -49,7 +49,9 @@ const Forgotpassword = ({ }) => {
       }, 5000);
 
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response.data.message ||
+        error.response.data.error ||
+        error.message)
       document.getElementById("deed2").style.display = "none";
       document.getElementById("deed1").style.display = "block";
     }
