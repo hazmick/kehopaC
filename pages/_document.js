@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-      <script src="/js/my-tawk.js" />
       </Head>
       <body>
 
