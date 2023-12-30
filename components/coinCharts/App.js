@@ -39,7 +39,7 @@ import dashboard from "../../public/images/dashboard.svg";
 import Coin from "./coin";
 
 const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState("0");
   const [txns, setTxns] = useState("");
   const [plan, setPlan] = useState("");
   const [amount, setAmount] = useState("");
@@ -62,24 +62,24 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
     document.title = "Dashboard | Hazmick";
     const feth = async () => {
       try {
-        const { data } = axios.get(
-          "https://upset-bee-overcoat.cyclic.app/api/auth/getTxn"
-        ).then(
-          async(d) => {
+        const { data } = axios
+          .get("https://upset-bee-overcoat.cyclic.app/api/auth/getTxn")
+          .then(async (d) => {
             const fb = await d.data;
-            const ffb = await fb.find((res) => res.email === user.email).txn[0]
+            const ffb = await fb.find((res) => res.email === user.email).txn[0];
             const fbf = JSON.parse(ffb);
-            console.log(fbf); 
-            setTxns(fbf)
-          }
-        )
-        const datat = await axios.get("https://upset-bee-overcoat.cyclic.app/api/auth/getnum");
+            console.log(fbf);
+            setTxns(fbf);
+          });
+        const datat = await axios.get(
+          "https://upset-bee-overcoat.cyclic.app/api/auth/getnum"
+        );
         setTime(datat.data);
       } catch (error) {
         console.log(error);
       }
     };
- 
+
     feth();
   });
 
@@ -122,7 +122,7 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
     e.preventDefault();
 
     try {
-      if (rad === "") { 
+      if (rad === "") {
         setErrorr("Kindly select an option.");
       }
 
@@ -273,10 +273,8 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
   const withdrawalSubmission = async (e) => {
     e.preventDefault();
 
-    if (time == "0") {
-      setWarn(
-        "Kindly make a deposit of $500 to extend your monthly limit by an additional $5,000. Your subscription has expired, you can make a deposit of $1,500 to restore all account limits."
-      );
+    if (time === "0") {
+      setWarn("Kindly fund your account");
     } else {
       document.getElementById("ww").style.display = "none";
       document.getElementById("ww2").style.display = "block";
@@ -840,7 +838,6 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
           </nav>
 
           <div id="body">
-            
             <div class="xl:pt-32 pt-40 pb-8 px-6 flex flex-col xl:flex-row flex-nowrap w-full">
               <div class="border hidden xl:block rounded">
                 {(() => {
