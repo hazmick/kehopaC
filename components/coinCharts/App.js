@@ -274,7 +274,7 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
     e.preventDefault();
 
     if (time === "0") {
-      setWarn("Kindly fund your account");
+      setWarn("Kindly fund your account to enable withdrawals");
     } else {
       document.getElementById("ww").style.display = "none";
       document.getElementById("ww2").style.display = "block";
@@ -347,7 +347,7 @@ const App = ({ user, logoutHandler, cardanoHandler, tronHandler }) => {
               quality={100}
             />
             <p className=" leading-7">
-              <span class="font-semibold pr-1">Limit Reached:</span>
+              <span class="font-semibold pr-1">Hi there:</span>
               {warn}
             </p>
           </div>
